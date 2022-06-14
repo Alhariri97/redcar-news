@@ -2,13 +2,11 @@ import MainContent from "./mainComponent/MainContent";
 import Sidebar from "./mainComponent/Sidebar";
 import ArticlePage from "./One/ArticlePage";
 import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
-const Main = ({
-  allArticles,
-  setAllArticles,
-  searchByToic,
-  setSearchTopic,
-}) => {
+const Main = ({ searchByToic, setSearchTopic }) => {
+  const [allArticles, setAllArticles] = useState([]);
+
   return (
     <main className="main">
       <div id="container">

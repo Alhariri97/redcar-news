@@ -6,24 +6,17 @@ import Contact from "./component/Contact";
 import About from "./component/About";
 
 function App() {
-  const [allArticles, setAllArticles] = useState([]);
   const [searchByToic, setSearchTopic] = useState("");
 
   return (
     <BrowserRouter>
       <div className="App">
-        <Header
-          allArticles={allArticles}
-          setAllArticles={setAllArticles}
-          setSearchTopic={setSearchTopic}
-        />
+        <Header setSearchTopic={setSearchTopic} />
         <Routes>
           <Route
             path={`*`}
             element={
               <Main
-                allArticles={allArticles}
-                setAllArticles={setAllArticles}
                 setSearchTopic={setSearchTopic}
                 searchByToic={searchByToic}
               />
