@@ -5,7 +5,6 @@ import { getOnArticle } from "./../../../api";
 const ArticlePage = () => {
   const { article_id } = useParams();
   const [oneAricle, setOneAritcle] = useState([]);
-
   useEffect(() => {
     getOnArticle(article_id)
       .then(({ article }) => {

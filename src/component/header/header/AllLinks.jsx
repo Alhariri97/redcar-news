@@ -1,14 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const AllLinks = ({ setSearchTopic, setShowMpileBar }) => {
+  // const navigate = useNavigate();
   return (
     <>
       <Link
         to={"/"}
         className="link-to"
         onClick={() => {
-          setShowMpileBar(false);
+          if (setShowMpileBar) {
+            setShowMpileBar(false);
+          }
           setSearchTopic("");
         }}
       >
@@ -18,7 +22,9 @@ const AllLinks = ({ setSearchTopic, setShowMpileBar }) => {
         to={"/contact"}
         className="link-to"
         onClick={() => {
-          setShowMpileBar(false);
+          if (setShowMpileBar) {
+            setShowMpileBar(false);
+          }
         }}
       >
         Contact
@@ -27,19 +33,12 @@ const AllLinks = ({ setSearchTopic, setShowMpileBar }) => {
         to={"/about"}
         className="link-to"
         onClick={() => {
-          setShowMpileBar(false);
+          if (setShowMpileBar) {
+            setShowMpileBar(false);
+          }
         }}
       >
         About
-      </Link>
-      <Link
-        to={"/about"}
-        className="link-to"
-        onClick={() => {
-          setShowMpileBar(false);
-        }}
-      >
-        Any
       </Link>
     </>
   );

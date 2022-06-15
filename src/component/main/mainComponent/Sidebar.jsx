@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { getTopics } from "../../../api";
 
 const Sidebar = ({ setSearchTopic }) => {
@@ -9,18 +9,21 @@ const Sidebar = ({ setSearchTopic }) => {
       setAllTopics(topics);
     });
   }, []);
+
   return (
     <div className="sid-bar">
-      {allTopics.map((topice) => {
+      {allTopics.map((topic) => {
         return (
-          <Link
-            to={`/`}
-            key={topice.slug}
-            onClick={() => setSearchTopic(topice.slug)}
+          <NavLink
+            to={`/${topic.slug}`}
+            key={topic.slug}
+            onClick={(e) => {
+              setSearchTopic(topic.slug);
+            }}
           >
-            <h4>{topice.slug}</h4>
-            <p>{topice.description}</p>
-          </Link>
+            <h4>{topic.slug}</h4>
+            <p>{topic.description}</p>
+          </NavLink>
         );
       })}
     </div>

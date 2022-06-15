@@ -12,6 +12,7 @@ const MopileSidbar = ({ setShowMpileBar, setSearchTopic }) => {
       setAllTopics(topics);
     });
   }, []);
+
   return (
     <div id="mopile-nav-sid">
       <div className="inner-mpile">
@@ -22,21 +23,24 @@ const MopileSidbar = ({ setShowMpileBar, setSearchTopic }) => {
         >
           <FontAwesomeIcon id="mopail-icon" icon={faXmark} />
         </span>
-        <AllLinks setShowMpileBar={setShowMpileBar} />
+        <AllLinks
+          setSearchTopic={setSearchTopic}
+          setShowMpileBar={setShowMpileBar}
+        />
         <div>
-          {allTopics.map((topice) => {
+          {allTopics.map((topic) => {
             return (
               <Link
-                to={`/`}
-                key={topice.slug}
+                to={`/${topic.slug}`}
+                key={topic.slug}
                 onClick={() => {
                   setShowMpileBar(false);
-                  setSearchTopic(topice.slug);
+                  setSearchTopic(topic.slug);
                 }}
                 className="topic"
               >
-                <h4>{topice.slug}</h4>
-                <p>{topice.description}</p>
+                <h4>{topic.slug}</h4>
+                <p>{topic.description}</p>
               </Link>
             );
           })}

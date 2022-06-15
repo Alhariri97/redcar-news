@@ -6,7 +6,6 @@ import { useState } from "react";
 
 const Main = ({ searchByToic, setSearchTopic }) => {
   const [allArticles, setAllArticles] = useState([]);
-
   return (
     <main className="main">
       <div id="container">
@@ -24,7 +23,19 @@ const Main = ({ searchByToic, setSearchTopic }) => {
               </>
             }
           />
-          <Route path={`/article/:article_id`} element={<ArticlePage />} />
+          <Route
+            path={`/:topic`}
+            element={
+              <>
+                <MainContent
+                  searchByToic={searchByToic}
+                  allArticles={allArticles}
+                  setAllArticles={setAllArticles}
+                />
+              </>
+            }
+          />
+          <Route path={`/:topic/:article_id`} element={<ArticlePage />} />
         </Routes>
       </div>
     </main>
