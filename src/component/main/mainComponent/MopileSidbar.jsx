@@ -5,7 +5,7 @@ import { getTopics } from "../../../api";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import AllLinks from "../../header/header/AllLinks";
 
-const MopileSidbar = ({ setShowMpileBar, setSearchTopic }) => {
+const MopileSidbar = ({ setShowMpileBar }) => {
   const [allTopics, setAllTopics] = useState([]);
   useEffect(() => {
     getTopics().then(({ topics }) => {
@@ -23,10 +23,7 @@ const MopileSidbar = ({ setShowMpileBar, setSearchTopic }) => {
         >
           <FontAwesomeIcon id="mopail-icon" icon={faXmark} />
         </span>
-        <AllLinks
-          setSearchTopic={setSearchTopic}
-          setShowMpileBar={setShowMpileBar}
-        />
+        <AllLinks setShowMpileBar={setShowMpileBar} />
         <div>
           {allTopics.map((topic) => {
             return (
@@ -35,7 +32,6 @@ const MopileSidbar = ({ setShowMpileBar, setSearchTopic }) => {
                 key={topic.slug}
                 onClick={() => {
                   setShowMpileBar(false);
-                  setSearchTopic(topic.slug);
                 }}
                 className="topic"
               >

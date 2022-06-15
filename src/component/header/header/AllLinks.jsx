@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
 
-const AllLinks = ({ setSearchTopic, setShowMpileBar }) => {
-  // const navigate = useNavigate();
+const AllLinks = ({ setShowMpileBar }) => {
   return (
     <>
       <Link
@@ -13,7 +11,6 @@ const AllLinks = ({ setSearchTopic, setShowMpileBar }) => {
           if (setShowMpileBar) {
             setShowMpileBar(false);
           }
-          setSearchTopic("");
         }}
       >
         Home

@@ -1,14 +1,10 @@
 import React from "react";
 import Navbar from "./Navbar";
 
-const Header = ({ allArticles, setAllArticles, setSearchTopic }) => {
+const Header = () => {
   return (
     <header>
-      <Navbar
-        allArticles={allArticles}
-        setAllArticles={setAllArticles}
-        setSearchTopic={setSearchTopic}
-      />
+      <Navbar />
     </header>
   );
 };

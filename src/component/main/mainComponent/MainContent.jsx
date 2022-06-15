@@ -3,7 +3,9 @@ import { getArticles } from "../../../api";
 import Article from "./article";
 import { useParams } from "react-router-dom";
 
-const MainContent = ({ allArticles, setAllArticles, searchByToic }) => {
+const MainContent = () => {
+  const [allArticles, setAllArticles] = useState([]);
+
   const [isLoading, setIsLoading] = useState(true);
 
   const { topic } = useParams();
@@ -13,7 +15,7 @@ const MainContent = ({ allArticles, setAllArticles, searchByToic }) => {
       setAllArticles(articles);
       setIsLoading(false);
     });
-  }, [setAllArticles, topic]);
+  }, [topic]);
   if (isLoading) return <p>....Loading</p>;
   return (
     <div className="main-container">

@@ -2,24 +2,18 @@ import MainContent from "./mainComponent/MainContent";
 import Sidebar from "./mainComponent/Sidebar";
 import ArticlePage from "./One/ArticlePage";
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
 
-const Main = ({ searchByToic, setSearchTopic }) => {
-  const [allArticles, setAllArticles] = useState([]);
+const Main = () => {
   return (
     <main className="main">
       <div id="container">
-        <Sidebar setSearchTopic={setSearchTopic} />
+        <Sidebar />
         <Routes>
           <Route
             path={`/`}
             element={
               <>
-                <MainContent
-                  searchByToic={searchByToic}
-                  allArticles={allArticles}
-                  setAllArticles={setAllArticles}
-                />
+                <MainContent />
               </>
             }
           />
@@ -27,11 +21,7 @@ const Main = ({ searchByToic, setSearchTopic }) => {
             path={`/:topic`}
             element={
               <>
-                <MainContent
-                  searchByToic={searchByToic}
-                  allArticles={allArticles}
-                  setAllArticles={setAllArticles}
-                />
+                <MainContent />
               </>
             }
           />
