@@ -1,15 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const AllLinks = ({ setSearchTopic, setShowMpileBar }) => {
+const AllLinks = ({ setShowMpileBar }) => {
   return (
     <>
       <Link
         to={"/"}
         className="link-to"
         onClick={() => {
-          setShowMpileBar(false);
-          setSearchTopic("");
+          if (setShowMpileBar) {
+            setShowMpileBar(false);
+          }
         }}
       >
         Home
@@ -18,7 +19,9 @@ const AllLinks = ({ setSearchTopic, setShowMpileBar }) => {
         to={"/contact"}
         className="link-to"
         onClick={() => {
-          setShowMpileBar(false);
+          if (setShowMpileBar) {
+            setShowMpileBar(false);
+          }
         }}
       >
         Contact
@@ -27,19 +30,12 @@ const AllLinks = ({ setSearchTopic, setShowMpileBar }) => {
         to={"/about"}
         className="link-to"
         onClick={() => {
-          setShowMpileBar(false);
+          if (setShowMpileBar) {
+            setShowMpileBar(false);
+          }
         }}
       >
         About
-      </Link>
-      <Link
-        to={"/about"}
-        className="link-to"
-        onClick={() => {
-          setShowMpileBar(false);
-        }}
-      >
-        Any
       </Link>
     </>
   );

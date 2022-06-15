@@ -1,9 +1,9 @@
 import React from "react";
 import AllLinks from "./AllLinks";
-const Links = ({ setSearchTopic }) => {
+const Links = () => {
   return (
     <div id="links-bar">
-      <AllLinks setSearchTopic={setSearchTopic} />
+      <AllLinks />
     </div>
   );
 };

@@ -5,13 +5,14 @@ import { getTopics } from "../../../api";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import AllLinks from "../../header/header/AllLinks";
 
-const MopileSidbar = ({ setShowMpileBar, setSearchTopic }) => {
+const MopileSidbar = ({ setShowMpileBar }) => {
   const [allTopics, setAllTopics] = useState([]);
   useEffect(() => {
     getTopics().then(({ topics }) => {
       setAllTopics(topics);
     });
   }, []);
+
   return (
     <div id="mopile-nav-sid">
       <div className="inner-mpile">
@@ -24,19 +25,18 @@ const MopileSidbar = ({ setShowMpileBar, setSearchTopic }) => {
         </span>
         <AllLinks setShowMpileBar={setShowMpileBar} />
         <div>
-          {allTopics.map((topice) => {
+          {allTopics.map((topic) => {
             return (
               <Link
-                to={`/`}
-                key={topice.slug}
+                to={`/${topic.slug}`}
+                key={topic.slug}
                 onClick={() => {
                   setShowMpileBar(false);
-                  setSearchTopic(topice.slug);
                 }}
                 className="topic"
               >
-                <h4>{topice.slug}</h4>
-                <p>{topice.description}</p>
+                <h4>{topic.slug}</h4>
+                <p>{topic.description}</p>
               </Link>
             );
           })}

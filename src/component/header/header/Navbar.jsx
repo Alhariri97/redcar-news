@@ -5,7 +5,7 @@ import Search from "./Search";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Navbar = ({ allArticles, setAllArticles, setSearchTopic }) => {
+const Navbar = () => {
   const [showMpileBar, setShowMpileBar] = useState(false);
   return (
     <div className="nav-bar">
@@ -13,15 +13,12 @@ const Navbar = ({ allArticles, setAllArticles, setSearchTopic }) => {
         <FontAwesomeIcon id="mopail-icon" icon={faBars} />
       </div>
       {showMpileBar ? (
-        <MopileSidbar
-          setShowMpileBar={setShowMpileBar}
-          setSearchTopic={setSearchTopic}
-        />
+        <MopileSidbar setShowMpileBar={setShowMpileBar} />
       ) : (
         <></>
       )}
-      <Links setSearchTopic={setSearchTopic} />
-      <Search allArticles={allArticles} setAllArticles={setAllArticles} />
+      <Links />
+      <Search />
     </div>
   );
 };
