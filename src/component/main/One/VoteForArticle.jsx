@@ -1,31 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { faAllergies, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { voteForTheArticle, ulikeArticle } from "../../../api";
-const VoteForArticle = ({ article_id, setOneAritcle }) => {
+import { voteForTheArticle, ulikeArticle, getOnArticle } from "../../../api";
+
+const VoteForArticle = ({ article_id, setAllVotes }) => {
   const [isHeLikedit, setIsHeLikedit] = useState(false);
+  const [newVotes, setNewVotes] = useState(0);
   const [err, setErr] = useState(false);
 
+  useEffect(() => {
+    getOnArticle(article_id).then(({ article }) =>
+      setNewVotes(article[0].votes)
+    );
+  });
   const votePlus = () => {
     if (!isHeLikedit) {
+      setAllVotes(newVotes + 1);
+      setIsHeLikedit(true);
+      document.getElementById("liking").style.color = "blue";
       voteForTheArticle(article_id).then(({ article }) => {
         if (article) {
-          setOneAritcle(article);
           setErr(false);
-          setIsHeLikedit(true);
-          document.getElementById("liking").style.color = "blue";
         } else {
           setErr(true);
         }
       });
     } else {
+      setIsHeLikedit(false);
+      setAllVotes(newVotes - 1);
+      document.getElementById("liking").style.color = "black";
       ulikeArticle(article_id).then(({ article }) => {
         if (article) {
-          setOneAritcle(article);
           setErr(false);
-          setIsHeLikedit(false);
-          document.getElementById("liking").style.color = "black";
         } else {
           setErr(true);
         }

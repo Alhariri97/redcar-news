@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { postAcomment } from "../../../api";
-import VoteForArticle from "./VoteForArticle";
 
 const WriteComment = ({ article_id, setOneAritcle }) => {
   const [commentInput, setCommentInput] = useState("");
@@ -10,9 +9,6 @@ const WriteComment = ({ article_id, setOneAritcle }) => {
   };
   return (
     <div className="comment-write" style={{}}>
-      <p style={{ cursor: "pointer", margin: "0 1vw" }}>
-        <VoteForArticle article_id={article_id} setOneAritcle={setOneAritcle} />
-      </p>
       <input
         id="comment-input"
         onChange={(e) => setCommentInput(e.target.value)}
