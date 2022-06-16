@@ -22,17 +22,19 @@ const VoteForArticle = ({ article_id, setAllVotes }) => {
       voteForTheArticle(article_id).then(({ article }) => {
         if (article) {
           setErr(false);
+          setAllVotes(article[0].votes);
         } else {
           setErr(true);
         }
       });
     } else {
       setIsHeLikedit(false);
-      setAllVotes(newVotes - 1);
+      setAllVotes(newVotes);
       document.getElementById("liking").style.color = "black";
       ulikeArticle(article_id).then(({ article }) => {
         if (article) {
           setErr(false);
+          setAllVotes(article[0].votes);
         } else {
           setErr(true);
         }
