@@ -80,7 +80,7 @@ padding:0 30px
 
 .main-contant .article-body {
   display: block;
-  /* overflow: hidden; */
+  overflow: hidden;
   max-height: 28vh;
   line-height: 4vh;
 }
@@ -126,7 +126,9 @@ padding:0 30px
   /* font-size: xx-large; */
 }
 .article-title{
-  margin: 4px auto;
+  margin: 5px auto;
+  border-bottom: var(--dark-color) solid 1px;
+  padding: 10px 5px;
 }
 .read-more{
   margin-top:10px ;
@@ -150,11 +152,7 @@ padding:0 30px
 #mopail-icon{
   display: none;
 }
-#full-article{
-  width: 100%;
-  grid-area: cont;
-  height: 87vh;
-}
+
 #links-bar{
   margin: 0 10px;
   display: flex;
@@ -235,4 +233,93 @@ width: 70%;
 #mopail-icon{
   cursor: pointer;
   font-size: 2rem;
+}
+
+/* 
+ */
+ #full-article{
+  width: 100%;
+  grid-area: cont;
+  height: 87vh;
+  display: flex ;
+  justify-content: space-between;
+}
+#all-comments{
+  max-width: 20vw;
+  font-size: 15px;
+  height: 85vh;
+  overflow: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+#all-comments::-webkit-scrollbar {
+  display: none;
+}
+.commetns{
+  display: flex;
+  flex-direction: column-reverse;
+}
+#all-comments div{
+max-width: 100%;
+  margin: 5px ;
+  padding: 5px;
+  padding-bottom: 10px;
+  border-bottom: #282828 solid 1px;
+}
+
+#one-article{
+  max-width: 45vw;
+  font-size: 20px;padding: 5px;
+
+}
+.article-content{
+
+}
+.article-content span{
+  /* position: absolute; */
+}
+.comment-write{
+  width:auto;
+  border: 1px solid black;
+  padding: 10px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  width: 47vw;
+  bottom: 27px;
+  height: 6vh;
+  align-items: center;
+  
+}
+.like-date{
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  margin: 10px 0;
+}
+@media  (max-width:1000px){
+  #all-comments{
+  /* height: 34vh;/ */
+  height: auto;
+  max-width: 100%;
+
+  }
+  .main-container h3{
+    display: none;
+  }
+  #full-article{
+    flex-direction: column-reverse;
+    height: 92vh;
+    justify-content: space-between;
+    padding-bottom: 10vh;
+  }
+  #one-article{
+    max-width: 100%;
+  }
+
+ .comment-write{
+    width:87vw
+    
+  }
+
 }

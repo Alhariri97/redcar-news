@@ -3,7 +3,15 @@ import { Link } from "react-router-dom";
 const Article = ({ article }) => {
   return (
     <div className="article" key={article.article_id}>
-      <h4 className="article-title">{article.title}</h4>
+      <h4>
+        {" "}
+        <Link
+          to={`/${article.topic}/${article.article_id}`}
+          className="article-title"
+        >
+          {article.title}
+        </Link>
+      </h4>
       <p className="article-body">
         {article.body.split(" ").slice(0, 45).join(" ") + "... "}
         <Link
