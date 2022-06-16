@@ -17,7 +17,7 @@ const WriteComment = ({ article_id, setOneAritcle }) => {
         id="comment-input"
         onChange={(e) => setCommentInput(e.target.value)}
         placeholder="Write a comment"
-        style={{ width: "75%", height: "3vh" }}
+        style={{ width: "85%", height: "3vh" }}
       ></input>
       <button
         style={{ cursor: "pointer", height: "3vh" }}

@@ -53,7 +53,8 @@ padding:0 30px
   border: 1px solid black;
   width: 30%;
   margin:  auto;
-  height: 40vh;
+  min-height: 40vh;
+  max-height: fit-content;
   overflow: hidden;
   position: relative;
   padding: 7px;
@@ -127,7 +128,7 @@ padding:0 30px
 }
 .article-title{
   margin: 5px auto;
-  border-bottom: var(--dark-color) solid 1px;
+  /* border-bottom: var(--dark-color) solid 1px; */
   padding: 10px 5px;
 }
 .read-more{
@@ -143,7 +144,7 @@ padding:0 30px
     }
     
     .main-contant .article-body {
-      height: 10vh;
+      /* height: 10vh; */
       line-height: 3vh;
       
     }
