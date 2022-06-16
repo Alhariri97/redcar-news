@@ -32,4 +32,16 @@ export const postAcomment = (article_id, text, user = "tickle122") => {
     .then(({ data }) => console.log(data));
 };
 
-postAcomment(1, "tickle122");
+export const voteForTheArticle = (article_id) => {
+  const obj = { inc_votes: +1 };
+  return redcarNewsApi
+    .patch(`/articles/${article_id}`, obj)
+    .then(({ data }) => data);
+};
+
+export const ulikeArticle = (article_id) => {
+  const obj = { inc_votes: -1 };
+  return redcarNewsApi
+    .patch(`/articles/${article_id}`, obj)
+    .then(({ data }) => data);
+};

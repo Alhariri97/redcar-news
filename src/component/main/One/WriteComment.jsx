@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { postAcomment } from "../../../api";
-const WriteComment = ({ article_id }) => {
+import VoteForArticle from "./VoteForArticle";
+
+const WriteComment = ({ article_id, setOneAritcle }) => {
   const [commentInput, setCommentInput] = useState("");
   const sumitComment = () => {
     postAcomment(article_id, commentInput);
@@ -8,8 +10,9 @@ const WriteComment = ({ article_id }) => {
   };
   return (
     <div className="comment-write" style={{}}>
-      <p style={{ cursor: "pointer", margin: "0 3vw" }}>+</p>
-      <p style={{ cursor: "pointer", margin: "0 3vw" }}>-</p>
+      <p style={{ cursor: "pointer", margin: "0 1vw" }}>
+        <VoteForArticle article_id={article_id} setOneAritcle={setOneAritcle} />
+      </p>
       <input
         id="comment-input"
         onChange={(e) => setCommentInput(e.target.value)}

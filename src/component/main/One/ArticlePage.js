@@ -42,7 +42,10 @@ const ArticlePage = () => {
                   </p>
                 </div>
                 <div>
-                  <WriteComment article_id={a.article_id} />
+                  <WriteComment
+                    setOneAritcle={setOneAritcle}
+                    article_id={a.article_id}
+                  />
                 </div>
               </div>
             )}
