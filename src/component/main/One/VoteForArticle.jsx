@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from "react";
 
-import { faAllergies, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { voteForTheArticle, ulikeArticle, getOnArticle } from "../../../api";
 
 const VoteForArticle = ({ article_id, setAllVotes }) => {
   const [isHeLikedit, setIsHeLikedit] = useState(false);
   const [newVotes, setNewVotes] = useState(0);
+  const [colorchosed, setColorchosed] = useState("black");
   const [err, setErr] = useState(false);
 
   useEffect(() => {
     getOnArticle(article_id).then(({ article }) =>
       setNewVotes(article[0].votes)
     );
-  }, []);
+  }, [article_id]);
   const votePlus = () => {
     if (!isHeLikedit) {
       setAllVotes(newVotes + 1);
       setIsHeLikedit(true);
-      document.getElementById("liking").style.color = "blue";
+      setColorchosed("blue");
       voteForTheArticle(article_id).then((data) => {
         console.log(data.article);
         if (data.article) {
@@ -30,7 +31,7 @@ const VoteForArticle = ({ article_id, setAllVotes }) => {
     } else {
       setAllVotes(newVotes);
       setIsHeLikedit(false);
-      document.getElementById("liking").style.color = "black";
+      setColorchosed("black");
       ulikeArticle(article_id).then((data) => {
         console.log(data.article);
         if (data.article) {
@@ -46,7 +47,7 @@ const VoteForArticle = ({ article_id, setAllVotes }) => {
     <span
       id="liking"
       onClick={votePlus}
-      style={{ cursor: "pointer", color: "black" }}
+      style={{ cursor: "pointer", color: colorchosed }}
     >
       <span>
         {" "}
