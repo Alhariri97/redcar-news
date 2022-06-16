@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { postAcomment } from "../../../api";
-const WriteComment = ({ article_id }) => {
+
+const WriteComment = ({ article_id, setOneAritcle }) => {
   const [commentInput, setCommentInput] = useState("");
   const sumitComment = () => {
     postAcomment(article_id, commentInput);
@@ -8,13 +9,11 @@ const WriteComment = ({ article_id }) => {
   };
   return (
     <div className="comment-write" style={{}}>
-      <p style={{ cursor: "pointer", margin: "0 3vw" }}>+</p>
-      <p style={{ cursor: "pointer", margin: "0 3vw" }}>-</p>
       <input
         id="comment-input"
         onChange={(e) => setCommentInput(e.target.value)}
         placeholder="Write a comment"
-        style={{ width: "75%", height: "3vh" }}
+        style={{ width: "85%", height: "3vh" }}
       ></input>
       <button
         style={{ cursor: "pointer", height: "3vh" }}

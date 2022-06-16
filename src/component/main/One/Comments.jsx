@@ -21,7 +21,7 @@ const Comments = ({ article_id }) => {
             <h4>{c.author}</h4>
             <p>{c.body}</p>
             <p>
-              <span>Likes: {c.votes} </span>
+              <span> Likes: {c.votes} </span>
               <span> Data: {c.created_at.split("T")[0]}</span>
             </p>
             <button style={{ cursor: "pointer" }}> Delete</button>

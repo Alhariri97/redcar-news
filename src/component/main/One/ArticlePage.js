@@ -4,16 +4,18 @@ import { getOnArticle } from "./../../../api";
 import Comments from "./Comments";
 import WriteComment from "./WriteComment";
 import SpinnerLoading from "../../Spinner";
-
+import VoteForArticle from "./VoteForArticle";
 const ArticlePage = () => {
   const { article_id } = useParams();
   const [oneAricle, setOneAritcle] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [allVotes, setAllVotes] = useState(0);
   useEffect(() => {
     getOnArticle(article_id)
       .then(({ article }) => {
         setOneAritcle(article);
         setIsLoading(false);
+        setAllVotes(article[0].votes);
       })
       .catch((err) => {});
   }, [article_id]);
@@ -37,12 +39,19 @@ const ArticlePage = () => {
                   <p>{a.topic}</p>
                   <p className="like-date">
                     <span>Date: {a.created_at.split("T")[0]}</span>
-                    <span>Likes {a.votes}</span>
+                    <VoteForArticle
+                      article_id={article_id}
+                      setAllVotes={setAllVotes}
+                    />
+                    <span>Likes {allVotes}</span>
                     <button style={{ cursor: "pointer" }}> Delete</button>
                   </p>
                 </div>
                 <div>
-                  <WriteComment article_id={a.article_id} />
+                  <WriteComment
+                    setOneAritcle={setOneAritcle}
+                    article_id={a.article_id}
+                  />
                 </div>
               </div>
             )}
