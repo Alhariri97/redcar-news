@@ -43,5 +43,6 @@ export const ulikeArticle = (article_id) => {
   const obj = { inc_votes: -1 };
   return redcarNewsApi
     .patch(`/articles/${article_id}`, obj)
-    .then(({ data }) => data);
+    .then(({ data }) => data)
+    .catch((e) => e);
 };

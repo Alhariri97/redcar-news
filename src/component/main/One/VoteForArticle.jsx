@@ -13,14 +13,15 @@ const VoteForArticle = ({ article_id, setAllVotes }) => {
     getOnArticle(article_id).then(({ article }) =>
       setNewVotes(article[0].votes)
     );
-  }, [newVotes]);
+  }, []);
   const votePlus = () => {
     if (!isHeLikedit) {
       setAllVotes(newVotes + 1);
       setIsHeLikedit(true);
       document.getElementById("liking").style.color = "blue";
-      voteForTheArticle(article_id).then(({ article }) => {
-        if (article) {
+      voteForTheArticle(article_id).then((data) => {
+        console.log(data.article);
+        if (data.article) {
           setErr(false);
         } else {
           setErr(true);
@@ -30,8 +31,9 @@ const VoteForArticle = ({ article_id, setAllVotes }) => {
       setAllVotes(newVotes);
       setIsHeLikedit(false);
       document.getElementById("liking").style.color = "black";
-      ulikeArticle(article_id).then(({ article }) => {
-        if (article) {
+      ulikeArticle(article_id).then((data) => {
+        console.log(data.article);
+        if (data.article) {
           setErr(false);
         } else {
           setErr(true);
@@ -46,8 +48,11 @@ const VoteForArticle = ({ article_id, setAllVotes }) => {
       onClick={votePlus}
       style={{ cursor: "pointer", color: "black" }}
     >
-      <FontAwesomeIcon id="like-icon" icon={faThumbsUp} />
-      {err ? <p>Opps Somthing went wrong...</p> : null}
+      <span>
+        {" "}
+        <FontAwesomeIcon id="like-icon" icon={faThumbsUp} />
+      </span>
+      {err ? <apan>Opps Somthing went wrong...</apan> : null}
     </span>
   );
 };
