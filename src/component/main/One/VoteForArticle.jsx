@@ -13,7 +13,7 @@ const VoteForArticle = ({ article_id, setAllVotes }) => {
     getOnArticle(article_id).then(({ article }) =>
       setNewVotes(article[0].votes)
     );
-  });
+  }, [newVotes]);
   const votePlus = () => {
     if (!isHeLikedit) {
       setAllVotes(newVotes + 1);
@@ -22,19 +22,17 @@ const VoteForArticle = ({ article_id, setAllVotes }) => {
       voteForTheArticle(article_id).then(({ article }) => {
         if (article) {
           setErr(false);
-          setAllVotes(article[0].votes);
         } else {
           setErr(true);
         }
       });
     } else {
-      setIsHeLikedit(false);
       setAllVotes(newVotes);
+      setIsHeLikedit(false);
       document.getElementById("liking").style.color = "black";
       ulikeArticle(article_id).then(({ article }) => {
         if (article) {
           setErr(false);
-          setAllVotes(article[0].votes);
         } else {
           setErr(true);
         }
