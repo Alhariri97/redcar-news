@@ -48,7 +48,6 @@ const WriteComment = ({ article_id, setOneAritcle }) => {
           id="comment-input"
           value={commentInput}
           onChange={(e) => {
-            console.log(e.keyup);
             setCommentInput(e.target.value);
           }}
           placeholder="Write a comment"

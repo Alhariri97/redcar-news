@@ -29,7 +29,7 @@ export const postAcomment = (article_id, text, user = "tickle122") => {
   };
   return redcarNewsApi
     .post(`/articles/${article_id}/comments`, obj)
-    .then(({ data }) => console.log(data));
+    .then(({ data }) => data);
 };
 
 export const voteForTheArticle = (article_id) => {
