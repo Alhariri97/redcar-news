@@ -144,7 +144,6 @@ padding:0 30px
     }
     
     .main-contant .article-body {
-      /* height: 10vh; */
       line-height: 3vh;
       
     }
@@ -177,7 +176,7 @@ padding:0 30px
   justify-content: flex-end;
 }
 #search input{
-  width: 60%;
+  width: 43vw;
   height:3vh;
 }
 
@@ -190,6 +189,7 @@ padding:0 30px
 }
 .nav-bar{
   justify-content: flex-end;
+  padding: 0 10px;
 }
 
 }

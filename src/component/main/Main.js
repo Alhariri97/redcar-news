@@ -3,7 +3,7 @@ import Sidebar from "./mainComponent/Sidebar";
 import ArticlePage from "./One/ArticlePage";
 import { Routes, Route } from "react-router-dom";
 
-const Main = () => {
+const Main = ({ order, sortBy }) => {
   return (
     <main className="main">
       <div id="container">
@@ -13,7 +13,7 @@ const Main = () => {
             path={`/`}
             element={
               <>
-                <MainContent />
+                <MainContent order={order} sortBy={sortBy} />
               </>
             }
           />
@@ -21,7 +21,7 @@ const Main = () => {
             path={`/:topic`}
             element={
               <>
-                <MainContent />
+                <MainContent order={order} sortBy={sortBy} />
               </>
             }
           />
