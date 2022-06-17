@@ -18,11 +18,11 @@ const Search = ({ setOrder, setSortBy }) => {
   }, [chosenOrder, chosenSortBy, setOrder, setSortBy]);
   return (
     <div id="search">
-      <select onClick={(e) => setChosenOrder(e.target.value)}>
+      <select onChange={(e) => setChosenOrder(e.target.value)}>
         <option value={"asc"}>Ascend</option>
         <option value={"desc"}>Descen</option>
       </select>
-      <select onClick={(e) => setChossenSortBy(e.target.value)}>
+      <select onChange={(e) => setChossenSortBy(e.target.value)}>
         <option value={""}>Date</option>
         <option value={"votes"}>Votes</option>
         <option value={"article_id"}>Article ID</option>
