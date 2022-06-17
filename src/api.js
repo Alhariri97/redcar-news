@@ -53,3 +53,9 @@ export const ulikeArticle = (article_id) => {
     .then(({ data }) => data)
     .catch((e) => e);
 };
+
+export const deleteComment = (id) => {
+  return redcarNewsApi.delete(`/comments/${id}`).then(({ data }) => {
+    return data;
+  });
+};

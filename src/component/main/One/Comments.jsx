@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { getAtriclesCommets } from "../../../api";
+import { getAtriclesCommets, deleteComment } from "../../../api";
 import SpinnerLoading from "../../Spinner";
 
 // Here is the comments component
 const Comments = ({ article_id }) => {
   const [allComments, setAllComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isItDelelted, setIsItDelelted] = useState(false);
 
   useEffect(() => {
     getAtriclesCommets(article_id).then(({ comments }) => {
@@ -13,9 +14,16 @@ const Comments = ({ article_id }) => {
       setIsLoading(false);
     });
   });
+  const deletAComment = (id) => {
+    deleteComment(id);
+    setIsItDelelted(true);
+    setTimeout(() => {
+      setIsItDelelted(false);
+    }, 1500);
+  };
   if (isLoading) return <SpinnerLoading />;
   return (
-    <div className="commetns">
+    <div className="commetns" style={{ position: "relative" }}>
       {allComments.map((c) => {
         return (
           <div key={c.comment_id}>
@@ -25,10 +33,31 @@ const Comments = ({ article_id }) => {
               <span> Likes: {c.votes} </span>
               <span> Data: {c.created_at.split("T")[0]}</span>
             </p>
-            <button style={{ cursor: "pointer" }}> Delete</button>
+            <button
+              onClick={() => deletAComment(c.comment_id)}
+              style={{ cursor: "pointer" }}
+            >
+              Delete
+            </button>
           </div>
         );
       })}
+      {isItDelelted ? (
+        <div
+          style={{
+            backgroundColor: "red",
+            position: "absolute",
+            width: "98%",
+            margin: "auto",
+            top: "0",
+            justifyContent: "center",
+            display: "flex",
+            opacity: "0.9",
+          }}
+        >
+          <p>Comment Delelted</p>
+        </div>
+      ) : null}
     </div>
   );
 };
