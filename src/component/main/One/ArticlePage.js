@@ -21,7 +21,12 @@ const ArticlePage = () => {
   }, [article_id]);
   return (
     <div className="main-container">
-      <h3 style={{ color: "red", paddingTop: "20px" }}>Comments</h3>
+      <h3
+        className="comments-word"
+        style={{ color: "red", paddingTop: "20px" }}
+      >
+        Comments
+      </h3>
       {oneAricle.map((a) => {
         return (
           <div key={a.article_id} id="full-article">

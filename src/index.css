@@ -306,16 +306,17 @@ max-width: 100%;
 @media  (max-width:1000px){
   #all-comments{
   /* height: 34vh;/ */
+  margin-bottom: 8vh;
   height: auto;
   max-width: 100%;
 
   }
-  .main-container h3{
+  .main-container .comments-word{
     display: none;
   }
   #full-article{
     flex-direction: column-reverse;
-    height: 100vh;
+    height: auto;
     justify-content: space-between;
     padding-bottom: 10vh;
   }
@@ -324,8 +325,11 @@ max-width: 100%;
   }
 
  .comment-write{
-    width:87vw
-    
+    width:87vw;
+    background-color: #f0f8ff;
+    bottom: 0;
+    border: 0;
   }
+
 
 }
