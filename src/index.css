@@ -315,7 +315,7 @@ max-width: 100%;
   }
   #full-article{
     flex-direction: column-reverse;
-    height: 92vh;
+    height: 100vh;
     justify-content: space-between;
     padding-bottom: 10vh;
   }

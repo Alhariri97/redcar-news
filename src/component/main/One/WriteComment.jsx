@@ -12,9 +12,9 @@ const WriteComment = ({ article_id, setOneAritcle }) => {
     setBor("none");
     const testRegx = /[a-z]+/gi;
     if (testRegx.test(commentInput)) {
+      setShowMessageDone(true);
+      setShowMessageDone(true);
       postAcomment(article_id, commentInput);
-      setShowMessageDone(true);
-      setShowMessageDone(true);
       setTimeout(() => {
         setShowMessageDone(false);
       }, 1500);
@@ -24,22 +24,22 @@ const WriteComment = ({ article_id, setOneAritcle }) => {
     }
   };
   return (
-    <div style={{}}>
+    <div style={{ position: "relative" }}>
       {showMessageDone ? (
         <div
           style={{
             position: "absolute",
             top: "5vh",
-            width: "80vw",
-            margin: "20px",
+            width: "100%",
             backgroundColor: "green",
             height: "10vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            opacity: "0.8",
           }}
         >
-          You have added a new comment Sucsessfully
+          <p>You have added a new comment Sucsessfully</p>
         </div>
       ) : null}
       <form className="comment-write" onSubmit={(e) => sumitComment(e)}>
