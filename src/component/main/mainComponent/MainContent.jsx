@@ -3,7 +3,7 @@ import { getArticles } from "../../../api";
 import Article from "./article";
 import { useParams } from "react-router-dom";
 
-const MainContent = () => {
+const MainContent = ({ order, sortBy }) => {
   const [allArticles, setAllArticles] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -11,11 +11,12 @@ const MainContent = () => {
   const { topic } = useParams();
 
   useEffect(() => {
-    getArticles(topic).then(({ articles }) => {
+    getArticles(topic, order, sortBy).then(({ articles }) => {
       setAllArticles(articles);
       setIsLoading(false);
     });
-  }, [topic]);
+  }, [topic, order, sortBy]);
+
   if (isLoading) return <p>....Loading</p>;
   return (
     <div className="main-container">
