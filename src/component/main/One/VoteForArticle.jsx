@@ -21,7 +21,6 @@ const VoteForArticle = ({ article_id, setAllVotes }) => {
       setIsHeLikedit(true);
       setColorchosed("blue");
       voteForTheArticle(article_id).then((data) => {
-        console.log(data.article);
         if (data.article) {
           setErr(false);
         } else {
@@ -33,7 +32,6 @@ const VoteForArticle = ({ article_id, setAllVotes }) => {
       setIsHeLikedit(false);
       setColorchosed("black");
       ulikeArticle(article_id).then((data) => {
-        console.log(data.article);
         if (data.article) {
           setErr(false);
         } else {

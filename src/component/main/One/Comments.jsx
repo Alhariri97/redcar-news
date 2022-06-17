@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getAtriclesCommets } from "../../../api";
 import SpinnerLoading from "../../Spinner";
 
+// Here is the comments component
 const Comments = ({ article_id }) => {
   const [allComments, setAllComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
