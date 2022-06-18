@@ -5,7 +5,7 @@ import Search from "./Search";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Navbar = ({ setOrder, setSortBy }) => {
+const Navbar = () => {
   const [showMpileBar, setShowMpileBar] = useState(false);
   return (
     <div className="nav-bar">
@@ -18,7 +18,7 @@ const Navbar = ({ setOrder, setSortBy }) => {
         <></>
       )}
       <Links />
-      <Search setOrder={setOrder} setSortBy={setSortBy} />
+      <Search />
     </div>
   );
 };

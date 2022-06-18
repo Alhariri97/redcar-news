@@ -14,8 +14,8 @@ const Sidebar = ({ setSearchTopic }) => {
     <div className="sid-bar">
       {allTopics.map((topic) => {
         return (
-          <Link to={`/${topic.slug}`} key={topic.slug}>
-            <h4>{topic.slug}</h4>
+          <Link to={`/topic/${topic.slug}`} key={topic.slug}>
+            <h4># {topic.slug}</h4>
             <p>{topic.description}</p>
           </Link>
         );

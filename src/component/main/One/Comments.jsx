@@ -2,24 +2,31 @@ import React, { useEffect, useState } from "react";
 import { getAtriclesCommets, deleteComment } from "../../../api";
 import SpinnerLoading from "../../Spinner";
 
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
+
 // Here is the comments component
 const Comments = ({ article_id }) => {
   const [allComments, setAllComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isItDelelted, setIsItDelelted] = useState(false);
+  // const [isHeTheUser, setIsHeTheUser] = useState(false);
+  const { user } = useContext(UserContext); // destracutar the state you want to use and here
 
   useEffect(() => {
     getAtriclesCommets(article_id).then(({ comments }) => {
       setAllComments(comments);
       setIsLoading(false);
     });
-  });
+  }, [allComments]);
+
   const deletAComment = (id) => {
-    deleteComment(id);
-    setIsItDelelted(true);
-    setTimeout(() => {
-      setIsItDelelted(false);
-    }, 1500);
+    deleteComment(id).then(() => {
+      setIsItDelelted(true);
+      setTimeout(() => {
+        setIsItDelelted(false);
+      }, 1500);
+    });
   };
   if (isLoading) return <SpinnerLoading />;
   return (
@@ -33,12 +40,15 @@ const Comments = ({ article_id }) => {
               <span> Likes: {c.votes} </span>
               <span> Data: {c.created_at.split("T")[0]}</span>
             </p>
-            <button
-              onClick={() => deletAComment(c.comment_id)}
-              style={{ cursor: "pointer" }}
-            >
-              Delete
-            </button>
+
+            {user.username === c.author ? (
+              <button
+                onClick={() => deletAComment(c.comment_id)}
+                style={{ cursor: "pointer" }}
+              >
+                Delete
+              </button>
+            ) : null}
           </div>
         );
       })}

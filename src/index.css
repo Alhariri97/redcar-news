@@ -134,7 +134,7 @@ padding:0 30px
 .read-more{
   margin-top:10px ;
   cursor: pointer;
-  color: var(--primay-color);
+  color:#00a52c;
 }
 
 @media  (max-width:800px) {

@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom";
-
+import {
+  faComments,
+  faHistory,
+  faHashtag,
+  faThumbsUp,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Article = ({ article }) => {
   return (
     <div className="article" key={article.article_id}>
@@ -22,9 +28,22 @@ const Article = ({ article }) => {
         </Link>
       </p>
       <div className="btn-date-topice">
-        <p className="article-topic">{article.topic}</p>
-        <p className="article-date"> likes {article.votes}</p>
-        <p>Comments: {article.comment_count}</p>
+        <p className="article-topic">
+          <FontAwesomeIcon className="article-icon" icon={faHashtag} />{" "}
+          {article.topic}
+        </p>
+        <p className="article-date">
+          <FontAwesomeIcon className="article-icon" icon={faThumbsUp} />{" "}
+          {article.votes}
+        </p>
+        <p>
+          <FontAwesomeIcon className="article-icon" icon={faComments} />{" "}
+          {article.comment_count}
+        </p>
+        <p>
+          <FontAwesomeIcon className="article-icon" icon={faHistory} />{" "}
+          {article.created_at.split("T")[0]}
+        </p>
       </div>
     </div>
   );

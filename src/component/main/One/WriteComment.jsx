@@ -1,26 +1,32 @@
 import React, { useState } from "react";
 import { postAcomment } from "../../../api";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
+import { Link } from "react-router-dom";
 
 const WriteComment = ({ article_id, setOneAritcle }) => {
   const [commentInput, setCommentInput] = useState("");
   const [showMessageDone, setShowMessageDone] = useState(false);
   const [bor, setBor] = useState("none");
-
+  const { user } = useContext(UserContext); // destracutar the state you want to use and here
   const sumitComment = (e) => {
-    setCommentInput("");
-    e.preventDefault();
-    setBor("none");
-    const testRegx = /[a-z]+/gi;
-    if (testRegx.test(commentInput)) {
-      setShowMessageDone(true);
-      setShowMessageDone(true);
-      postAcomment(article_id, commentInput);
-      setTimeout(() => {
-        setShowMessageDone(false);
-      }, 1500);
-    } else {
+    if (user) {
       setCommentInput("");
-      setBor("1px solid red");
+      e.preventDefault();
+      setBor("none");
+      const testRegx = /[a-z]+/gi;
+      if (testRegx.test(commentInput)) {
+        setShowMessageDone(true);
+        setShowMessageDone(true);
+        postAcomment(article_id, commentInput, user.username);
+        setTimeout(() => {
+          setShowMessageDone(false);
+        }, 1500);
+      } else {
+        setCommentInput("");
+        setBor("1px solid red");
+      }
+    } else {
     }
   };
   return (
@@ -42,26 +48,40 @@ const WriteComment = ({ article_id, setOneAritcle }) => {
           <p>You have added a new comment Sucsessfully</p>
         </div>
       ) : null}
-      <form className="comment-write" onSubmit={(e) => sumitComment(e)}>
-        <input
-          type="text"
-          id="comment-input"
-          value={commentInput}
-          onChange={(e) => {
-            setCommentInput(e.target.value);
-          }}
-          placeholder="Write a comment"
+      {user ? (
+        <form className="comment-write" onSubmit={(e) => sumitComment(e)}>
+          <input
+            type="text"
+            id="comment-input"
+            value={commentInput}
+            onChange={(e) => {
+              setCommentInput(e.target.value);
+            }}
+            placeholder="Write a comment"
+            style={{
+              width: "85%",
+              height: "3vh",
+              resize: "none",
+              border: bor,
+            }}
+          ></input>
+          <button type="submit" style={{ cursor: "pointer", height: "3vh" }}>
+            comment
+          </button>
+        </form>
+      ) : (
+        <Link
+          to="/login"
           style={{
-            width: "85%",
+            cursor: "pointer",
             height: "3vh",
-            resize: "none",
-            border: bor,
+            marginTop: "20px",
+            color: "green",
           }}
-        ></input>
-        <button type="submit" style={{ cursor: "pointer", height: "3vh" }}>
-          comment
-        </button>
-      </form>
+        >
+          You need to login to write comments!
+        </Link>
+      )}
     </div>
   );
 };

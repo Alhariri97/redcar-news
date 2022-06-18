@@ -9,11 +9,19 @@ export const getArticles = (topic, order, sortBy) => {
     const sort_by = sortBy;
     return redcarNewsApi
       .get("/articles", { params: { topic, order, sort_by } })
-      .then(({ data }) => data);
+      .then(({ data }) => data)
+      .catch((er) => {
+        console.log(er);
+        return er;
+      });
   } else {
     return redcarNewsApi
       .get("/articles", { params: { topic, order } })
-      .then(({ data }) => data);
+      .then(({ data }) => data)
+      .catch((er) => {
+        // console.log(er);
+        return er;
+      });
   }
 };
 export const getOnArticle = (article_id) => {
@@ -29,7 +37,7 @@ export const getAtriclesCommets = (article_id) => {
     .then(({ data }) => data);
 };
 
-export const postAcomment = (article_id, text, user = "tickle122") => {
+export const postAcomment = (article_id, text, user) => {
   const obj = {
     username: user,
     body: text,
@@ -56,6 +64,12 @@ export const ulikeArticle = (article_id) => {
 
 export const deleteComment = (id) => {
   return redcarNewsApi.delete(`/comments/${id}`).then(({ data }) => {
+    return data;
+  });
+};
+
+export const getUser = (username) => {
+  return redcarNewsApi.get(`/users/${username}`).then(({ data }) => {
     return data;
   });
 };

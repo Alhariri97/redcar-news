@@ -1,10 +1,13 @@
 import React from "react";
 import Navbar from "./Navbar";
 
-const Header = ({ setOrder, setSortBy }) => {
+import { UserContext } from "../../context/UserContext"; //<----and this
+import { useContext } from "react"; //<------------------- this
+
+const Header = () => {
   return (
     <header>
-      <Navbar setOrder={setOrder} setSortBy={setSortBy} />
+      <Navbar />
     </header>
   );
 };
