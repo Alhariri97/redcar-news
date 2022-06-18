@@ -29,7 +29,7 @@ const Create = () => {
         // console.log(article[0]);
       });
     }
-  }, []);
+  }, [location, navigate, user]);
   const handelSubmit = (e) => {
     console.log(user.username);
     e.preventDefault();

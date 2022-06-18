@@ -5,7 +5,7 @@ import { useContext } from "react"; //<------------------- this
 
 const AllLinks = ({ setShowMpileBar }) => {
   const navigate = useNavigate();
-  const { user, setUser } = useContext(UserContext); // destracutar the state you want to use and here
+  const { user } = useContext(UserContext); // destracutar the state you want to use and here
   return (
     <>
       {user ? (
