@@ -10,11 +10,9 @@ const LikeComment = ({ comment_id }) => {
     console.log(comment_id, "pressed");
 
     if (!isHeLikedit) {
-      console.log(comment_id, "Like");
       likeCommentApi(comment_id).then((e) => setColorchosed("blue"));
       setIsHeLikedit(true);
     } else {
-      console.log(comment_id, "un Like");
       unLikeCommentApi(comment_id).then((e) => setColorchosed("black"));
       setIsHeLikedit(false);
     }

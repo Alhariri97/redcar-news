@@ -88,3 +88,24 @@ export const unLikeCommentApi = (comment_id) => {
     .then(({ data }) => data)
     .catch((e) => e);
 };
+
+export const postAnArticle = (author, title, body, topic) => {
+  const obj = {
+    author,
+    title,
+    body,
+    topic,
+  };
+  console.log(obj);
+  return redcarNewsApi.post(`/articles`, obj).then(({ data }) => data);
+};
+
+export const updateArticle = (title, body, topic, id) => {
+  const obj = {
+    title,
+    body,
+    topic,
+  };
+  console.log(obj);
+  return redcarNewsApi.put(`/articles/${id}`, obj).then(({ data }) => data);
+};

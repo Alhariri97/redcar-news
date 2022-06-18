@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getOnArticle } from "./../../../api";
 import Comments from "./Comments";
 import WriteComment from "./WriteComment";
 import SpinnerLoading from "../../Spinner";
 import VoteForArticle from "./VoteForArticle";
+
+import { UserContext } from "../../context/UserContext"; //<----and this
+import { useContext } from "react"; //<------------------- this
 const ArticlePage = () => {
   const { article_id } = useParams();
   const [oneAricle, setOneAritcle] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [allVotes, setAllVotes] = useState(0);
+  const { user } = useContext(UserContext); // destracutar the state you want to use and here
+  const navigate = useNavigate();
   useEffect(() => {
     getOnArticle(article_id)
       .then(({ article }) => {
@@ -49,7 +54,29 @@ const ArticlePage = () => {
                       setAllVotes={setAllVotes}
                     />
                     <span>Likes {allVotes}</span>
-                    <button style={{ cursor: "pointer" }}> Delete</button>
+                    {user ? (
+                      <>
+                        {user.username === a.author ? (
+                          <>
+                            <button
+                              onClick={() =>
+                                navigate("/create", {
+                                  state: { article_id: a.article_id },
+                                })
+                              }
+                              style={{ cursor: "pointer" }}
+                            >
+                              {" "}
+                              Edite
+                            </button>
+                            <button style={{ cursor: "pointer" }}>
+                              {" "}
+                              Delete
+                            </button>
+                          </>
+                        ) : null}
+                      </>
+                    ) : null}
                   </p>
                 </div>
                 <div>

@@ -10,6 +10,8 @@ import { UserContext } from "./component/context/UserContext";
 import { useState } from "react";
 import NotFound from "./component/NotFound";
 import Account from "./component/main/Account";
+import Create from "./component/Create";
+import SignUp from "./component/SignUp";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -67,6 +69,8 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
             <Route path="account" element={<Account />} />
+            <Route path="sign-up" element={<SignUp />}></Route>
+            <Route path="create" element={<Create />} />
             <Route path="*" element={<NotFound />}></Route>
           </Routes>
         </UserContext.Provider>

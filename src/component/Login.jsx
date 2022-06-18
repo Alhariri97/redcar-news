@@ -3,7 +3,7 @@ import { getUser } from "../api";
 import { UserContext } from "./context/UserContext"; //<----and this
 import { useContext } from "react"; //<------------------- this
 // import both react useContext and my context wich is in this case is the userCotext
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
   const [userNameInput, setUserNameInput] = useState("");
   const [error, setError] = useState("");
@@ -21,7 +21,7 @@ const Login = () => {
     if (userNameInput.length) {
       setError(false);
       getUser(userNameInput).then((data) => setUser(data)); //here I'm usening it
-      navigate("/");
+      navigate("/topic");
     } else {
       setError("Write a user name to Login ");
     }
@@ -39,6 +39,14 @@ const Login = () => {
         <button type="submit">Login</button>
         {error.length ? <p>{error}</p> : null}
       </form>
+      <p>
+        Dont have an Acount!
+        <Link to="/sign-up" style={{ color: "green" }}>
+          {" "}
+          Create
+        </Link>{" "}
+        Now
+      </p>
     </div>
   );
 };

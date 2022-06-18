@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getArticles } from "../../../api";
 import Article from "./article";
-import { useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
+// import WriteAnArticle from "./WriteAnArticle";
 
 const MainContent = () => {
   const [allArticles, setAllArticles] = useState([]);
@@ -9,18 +10,29 @@ const MainContent = () => {
   const [order, setOrder] = useState("desc");
   const [sortBy, setSortBy] = useState("");
   const [chosenOrder, setChosenOrder] = useState("desc");
+  const [, setWriteAritcle] = useState(false);
   //
   const [chosenSortBy, setChossenSortBy] = useState("");
+  //
+  const [hepupleshed, setHepupleshed] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     setOrder(chosenOrder);
     setSortBy(chosenSortBy);
-  }, [chosenOrder, chosenSortBy, setOrder, setSortBy]);
+    if (location.state) {
+      setHepupleshed(true);
+      setTimeout(() => {
+        setHepupleshed(false);
+      }, 1500);
+    }
+  }, [chosenOrder, chosenSortBy, setOrder, setSortBy, location.state]);
 
   const [isLoading, setIsLoading] = useState(true);
   const [topicNotFound, setTopicNotFound] = useState(false);
 
   const { topic } = useParams();
+
   useEffect(() => {
     getArticles(topic, order, sortBy).then((data) => {
       if (data.articles) {
@@ -38,6 +50,36 @@ const MainContent = () => {
 
   return (
     <div className="main-container">
+      {hepupleshed ? (
+        <div
+          style={{
+            display: "flex",
+            zIndex: "2",
+            width: "100%",
+            height: "30%",
+            position: "fixed",
+            justifyContent: "center",
+            alignContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+            paddingTop: "20px",
+            left: 0,
+            top: 0,
+          }}
+        >
+          <p
+            style={{
+              width: "40%",
+              textAlign: "center",
+              paddingTop: "10px",
+              height: "40px",
+              backgroundColor: "rgba(0 ,165 ,44, 0.4)",
+            }}
+          >
+            You pupleshed {location.state.title} succesfully
+          </p>
+        </div>
+      ) : null}
       <div className="main-contant">
         <div>
           <select onChange={(e) => setChosenOrder(e.target.value)}>
@@ -49,6 +91,9 @@ const MainContent = () => {
             <option value={"votes"}>Votes</option>
             <option value={"article_id"}>Article ID</option>
           </select>
+          <Link to="/create" onClick={() => setWriteAritcle(true)}>
+            Write an artilce
+          </Link>
         </div>
         {topicNotFound ? (
           <div
