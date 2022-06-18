@@ -28,7 +28,7 @@ const MopileSidbar = ({ setShowMpileBar }) => {
           {allTopics.map((topic) => {
             return (
               <Link
-                to={`/${topic.slug}`}
+                to={`/topic/${topic.slug}`}
                 key={topic.slug}
                 onClick={() => {
                   setShowMpileBar(false);

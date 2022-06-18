@@ -8,6 +8,7 @@ import ArticlePage from "./component/main/One/ArticlePage";
 import Login from "./component/Login";
 import { UserContext } from "./component/context/UserContext";
 import { useState } from "react";
+import NotFound from "./component/NotFound";
 import Account from "./component/main/Account";
 
 function App() {
@@ -66,7 +67,7 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
             <Route path="account" element={<Account />} />
-            <Route path="*" element={<> hello </>}></Route>
+            <Route path="*" element={<NotFound />}></Route>
           </Routes>
         </UserContext.Provider>
       </div>

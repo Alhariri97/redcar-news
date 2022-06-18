@@ -1,0 +1,32 @@
+import React, { useState } from "react";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { likeCommentApi, unLikeCommentApi } from "../../../api";
+const LikeComment = ({ comment_id }) => {
+  const [colorchosed, setColorchosed] = useState("black");
+  const [isHeLikedit, setIsHeLikedit] = useState(false);
+
+  const pressedToLikeComment = () => {
+    console.log(comment_id, "pressed");
+
+    if (!isHeLikedit) {
+      console.log(comment_id, "Like");
+      likeCommentApi(comment_id).then((e) => setColorchosed("blue"));
+      setIsHeLikedit(true);
+    } else {
+      console.log(comment_id, "un Like");
+      unLikeCommentApi(comment_id).then((e) => setColorchosed("black"));
+      setIsHeLikedit(false);
+    }
+  };
+  return (
+    <span
+      onClick={() => pressedToLikeComment()}
+      style={{ cursor: "pointer", color: colorchosed }}
+    >
+      <FontAwesomeIcon id="like-icon" icon={faThumbsUp} />
+    </span>
+  );
+};
+
+export default LikeComment;

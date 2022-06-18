@@ -73,3 +73,18 @@ export const getUser = (username) => {
     return data;
   });
 };
+export const likeCommentApi = (comment_id) => {
+  const obj = { inc_votes: +1 };
+  return redcarNewsApi
+    .patch(`/comments/${comment_id}`, obj)
+    .then(({ data }) => data)
+    .catch((e) => e);
+};
+
+export const unLikeCommentApi = (comment_id) => {
+  const obj = { inc_votes: -1 };
+  return redcarNewsApi
+    .patch(`/comments/${comment_id}`, obj)
+    .then(({ data }) => data)
+    .catch((e) => e);
+};

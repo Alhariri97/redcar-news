@@ -4,13 +4,13 @@ import SpinnerLoading from "../../Spinner";
 
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
+import LikeComment from "./LikeComment";
 
 // Here is the comments component
 const Comments = ({ article_id }) => {
   const [allComments, setAllComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isItDelelted, setIsItDelelted] = useState(false);
-  // const [isHeTheUser, setIsHeTheUser] = useState(false);
   const { user } = useContext(UserContext); // destracutar the state you want to use and here
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const Comments = ({ article_id }) => {
       setAllComments(comments);
       setIsLoading(false);
     });
-  }, [allComments]);
+  }, [allComments, article_id]);
 
   const deletAComment = (id) => {
     deleteComment(id).then(() => {
@@ -28,6 +28,8 @@ const Comments = ({ article_id }) => {
       }, 1500);
     });
   };
+  //
+
   if (isLoading) return <SpinnerLoading />;
   return (
     <div className="commetns" style={{ position: "relative" }}>
@@ -40,15 +42,25 @@ const Comments = ({ article_id }) => {
               <span> Likes: {c.votes} </span>
               <span> Data: {c.created_at.split("T")[0]}</span>
             </p>
-
-            {user.username === c.author ? (
-              <button
-                onClick={() => deletAComment(c.comment_id)}
-                style={{ cursor: "pointer" }}
-              >
-                Delete
-              </button>
+            {user ? (
+              <>
+                {user.username === c.author ? (
+                  <button
+                    onClick={() => deletAComment(c.comment_id)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    Delete
+                  </button>
+                ) : null}
+              </>
             ) : null}
+            {user ? (
+              <>
+                {user.username !== c.author ? (
+                  <LikeComment comment_id={c.comment_id} />
+                ) : null}
+              </>
+            ) : null}{" "}
           </div>
         );
       })}
