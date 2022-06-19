@@ -96,8 +96,11 @@ export const postAnArticle = (author, title, body, topic) => {
     body,
     topic,
   };
-  console.log(obj);
-  return redcarNewsApi.post(`/articles`, obj).then(({ data }) => data);
+  console.log("jjjjjjjjjjjjj");
+  return redcarNewsApi
+    .post(`/articles`, obj)
+    .then(({ data: { createdArticle } }) => createdArticle)
+    .catch((err) => console.log(err));
 };
 
 export const updateArticle = (title, body, topic, id) => {
@@ -106,6 +109,26 @@ export const updateArticle = (title, body, topic, id) => {
     body,
     topic,
   };
-  console.log(obj);
   return redcarNewsApi.put(`/articles/${id}`, obj).then(({ data }) => data);
+};
+
+export const registerUser = (username, name, avatar_url, email, password) => {
+  console.log(username, name, avatar_url, email, password);
+  const obj = {
+    username,
+    name,
+    avatar_url,
+    email,
+    password,
+  };
+  return redcarNewsApi.post(`/users/register`, obj).then((data) => data);
+};
+
+export const login = async (username, password) => {
+  const obj = {
+    username,
+    password,
+  };
+
+  return redcarNewsApi.post(`/users/login`, obj).then((data) => data);
 };

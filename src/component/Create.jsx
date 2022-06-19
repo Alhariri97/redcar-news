@@ -12,32 +12,23 @@ const Create = () => {
   const location = useLocation();
   const { user } = useContext(UserContext); // destracutar the state you want to use and here
   const navigate = useNavigate();
-
   useEffect(() => {
     if (!user) {
       navigate("/login");
     }
     getTopics().then(({ topics }) => setAllTopics(topics));
-    console.log(location);
-    console.log(!location.state);
     if (location.state) {
-      // console.log(location.state.article_id);
       getOnArticle(location.state.article_id).then(({ article }) => {
         setArticleTitle(article[0].title);
         setArticleBody(article[0].body);
         setTopicChosen(article[0].topic);
-        // console.log(article[0]);
       });
     }
   }, [location, navigate, user]);
   const handelSubmit = (e) => {
-    console.log(user.username);
     e.preventDefault();
-    // console.log(topicChosen, articleTitle, articleBody);
-
     if (location.state) {
       if (!topicChosen.length || !articleTitle.length || !articleBody.length) {
-        console.log("first");
       } else {
         updateArticle(
           articleTitle,
@@ -49,8 +40,8 @@ const Create = () => {
         });
       }
     } else {
+      console.log("Creating");
       if (!topicChosen.length || !articleTitle.length || !articleBody.length) {
-        console.log("first");
       } else {
         postAnArticle(
           user.username,
@@ -58,11 +49,8 @@ const Create = () => {
           articleBody,
           topicChosen
         ).then((data) => {
-          console.log(data);
-          if (data.createdArticle) {
-            navigate("/topic", { state: { title: articleTitle } });
-          } else {
-          }
+          console.log(data[0], "Data comming after the request");
+          navigate("/topic", { state: { title: data[0].title } });
         });
       }
     }

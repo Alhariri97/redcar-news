@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Account = () => {
   const { setUser, user } = useContext(UserContext); // destracutar the state you want to use and here
   const navigate = useNavigate();
+  console.log(user);
   useEffect(() => {
     if (!user) {
       navigate("/login");
