@@ -7,8 +7,6 @@ const LikeComment = ({ comment_id }) => {
   const [isHeLikedit, setIsHeLikedit] = useState(false);
 
   const pressedToLikeComment = () => {
-    console.log(comment_id, "pressed");
-
     if (!isHeLikedit) {
       likeCommentApi(comment_id).then((e) => setColorchosed("blue"));
       setIsHeLikedit(true);

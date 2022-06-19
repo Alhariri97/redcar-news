@@ -12,6 +12,7 @@ import NotFound from "./component/NotFound";
 import Account from "./component/main/Account";
 import Create from "./component/Create";
 import SignUp from "./component/SignUp";
+import Home from "./component/Home";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -22,16 +23,7 @@ function App() {
           <Header />
           <Routes>
             {/* <Route path={`*`} element={<Main order={order} sortBy={sortBy} />} /> */}
-            <Route
-              path={`/`}
-              element={
-                <main className="main">
-                  <div id="container">
-                    <h3>this is the landing page</h3>
-                  </div>
-                </main>
-              }
-            />
+            <Route path={`/`} element={<Home />} />
             <Route
               path={`topic`}
               element={

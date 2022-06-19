@@ -11,7 +11,6 @@ export const getArticles = (topic, order, sortBy) => {
       .get("/articles", { params: { topic, order, sort_by } })
       .then(({ data }) => data)
       .catch((er) => {
-        console.log(er);
         return er;
       });
   } else {
@@ -19,7 +18,6 @@ export const getArticles = (topic, order, sortBy) => {
       .get("/articles", { params: { topic, order } })
       .then(({ data }) => data)
       .catch((er) => {
-        // console.log(er);
         return er;
       });
   }
@@ -96,11 +94,10 @@ export const postAnArticle = (author, title, body, topic) => {
     body,
     topic,
   };
-  console.log("jjjjjjjjjjjjj");
   return redcarNewsApi
     .post(`/articles`, obj)
     .then(({ data: { createdArticle } }) => createdArticle)
-    .catch((err) => console.log(err));
+    .catch((err) => err);
 };
 
 export const updateArticle = (title, body, topic, id) => {
@@ -113,7 +110,6 @@ export const updateArticle = (title, body, topic, id) => {
 };
 
 export const registerUser = (username, name, avatar_url, email, password) => {
-  console.log(username, name, avatar_url, email, password);
   const obj = {
     username,
     name,
@@ -121,7 +117,14 @@ export const registerUser = (username, name, avatar_url, email, password) => {
     email,
     password,
   };
-  return redcarNewsApi.post(`/users/register`, obj).then((data) => data);
+  return redcarNewsApi
+    .post(`/users/register`, obj)
+    .then((data) => {
+      return data;
+    })
+    .catch((err) => {
+      return err;
+    });
 };
 
 export const login = async (username, password) => {
@@ -129,6 +132,8 @@ export const login = async (username, password) => {
     username,
     password,
   };
-
-  return redcarNewsApi.post(`/users/login`, obj).then((data) => data);
+  return redcarNewsApi
+    .post(`/users/login`, obj)
+    .then((data) => data)
+    .catch((err) => err);
 };

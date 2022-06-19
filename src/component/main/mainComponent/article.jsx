@@ -7,6 +7,19 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Article = ({ article }) => {
+  const articleBodyDisplayFunc = (text) => {
+    const textArray = text.split(" ");
+
+    if (textArray.length < 45) {
+      isLong = false;
+      return text;
+    } else {
+      isLong = true;
+      let joining = textArray.slice(0, 45).join(" ") + "...";
+      return joining;
+    }
+  };
+  let isLong;
   return (
     <div className="article" key={article.article_id}>
       <h4>
@@ -19,13 +32,23 @@ const Article = ({ article }) => {
         </Link>
       </h4>
       <p className="article-body">
-        {article.body.split(" ").slice(0, 45).join(" ") + "... "}
+        {/* {article.body.split(" ").slice(0, 45).join(" ") + "... "}
         <Link
           to={`/${article.topic}/${article.article_id}`}
           className="read-more"
         >
+        
           Read More
-        </Link>
+        </Link> */}
+        {articleBodyDisplayFunc(article.body)}
+        {isLong ? (
+          <Link
+            to={`/${article.topic}/${article.article_id}`}
+            className="read-more"
+          >
+            Read more
+          </Link>
+        ) : null}
       </p>
       <div className="btn-date-topice">
         <p className="article-topic">

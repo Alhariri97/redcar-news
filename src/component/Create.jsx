@@ -40,7 +40,6 @@ const Create = () => {
         });
       }
     } else {
-      console.log("Creating");
       if (!topicChosen.length || !articleTitle.length || !articleBody.length) {
       } else {
         postAnArticle(
@@ -49,7 +48,6 @@ const Create = () => {
           articleBody,
           topicChosen
         ).then((data) => {
-          console.log(data[0], "Data comming after the request");
           navigate("/topic", { state: { title: data[0].title } });
         });
       }

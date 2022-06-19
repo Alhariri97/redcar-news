@@ -91,7 +91,11 @@ const MainContent = () => {
             <option value={"votes"}>Votes</option>
             <option value={"article_id"}>Article ID</option>
           </select>
-          <Link to="/create" onClick={() => setWriteAritcle(true)}>
+          <Link
+            to="/create"
+            onClick={() => setWriteAritcle(true)}
+            style={{ backgroundColor: "blue", color: "gray" }}
+          >
             Write an artilce
           </Link>
         </div>

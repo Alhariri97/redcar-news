@@ -12,26 +12,54 @@ const SignUp = () => {
   const [name, setName] = useState("");
   const [yourImage, setYourImage] = useState("");
   const [email, setEmail] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
   if (user) {
     navigate("/");
   }
   const handelSubmit = (e) => {
     e.preventDefault();
-    registerUser(username, name, yourImage, email, password).then((e) =>
-      console.log(e)
-    );
+    if (
+      !username.length ||
+      !password.length ||
+      !name.length ||
+      !yourImage.length ||
+      !email.length
+    ) {
+      setErrorMsg("Fill All inputs");
+    } else {
+      registerUser(username, name, yourImage, email, password).then((e) => {
+        if (e.status === 201) {
+          navigate("/login", {
+            state: {
+              name: e.data.newCreatedUser.name,
+            },
+          });
+        } else {
+          console.log(e.response.data.msg);
+          setErrorMsg(e.response.data.msg);
+        }
+      });
+    }
   };
 
   return (
-    <div>
-      <form onSubmit={(e) => handelSubmit(e)}>
+    <div className="sign-up">
+      <form
+        onSubmit={(e) => {
+          setErrorMsg("");
+          handelSubmit(e);
+        }}
+      >
         <label htmlFor="username">
           Usernaem:
           <input
             id="username"
             name="username"
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => {
+              setErrorMsg("");
+              setUsername(e.target.value);
+            }}
           ></input>
         </label>
         <label htmlFor="password">
@@ -39,7 +67,10 @@ const SignUp = () => {
           <input
             id="password"
             name="password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setErrorMsg("");
+              setPassword(e.target.value);
+            }}
           ></input>
         </label>
         <label htmlFor="name">
@@ -47,7 +78,10 @@ const SignUp = () => {
           <input
             id="name"
             name="name"
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              setErrorMsg("");
+              setName(e.target.value);
+            }}
           ></input>
         </label>
         <label htmlFor="avatar_url">
@@ -55,7 +89,10 @@ const SignUp = () => {
           <input
             id="avatar_url"
             name="avatar_url"
-            onChange={(e) => setYourImage(e.target.value)}
+            onChange={(e) => {
+              setErrorMsg("");
+              setYourImage(e.target.value);
+            }}
           ></input>
         </label>
         <label htmlFor="email">
@@ -63,9 +100,13 @@ const SignUp = () => {
           <input
             id="email"
             name="email"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setErrorMsg("");
+              setEmail(e.target.value);
+            }}
           ></input>
           <button>Submit</button>
+          {errorMsg ? <p style={{ color: "red" }}>{errorMsg}</p> : null}
         </label>
       </form>
     </div>
