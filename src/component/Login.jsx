@@ -46,7 +46,7 @@ const Login = () => {
       setShowWellcome(true);
       setTimeout(() => {
         setShowWellcome(false);
-      }, 3000);
+      }, 9000);
     }
   }, [location.state]);
 

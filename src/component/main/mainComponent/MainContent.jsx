@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getArticles } from "../../../api";
 import Article from "./article";
 import { Link, useParams, useLocation } from "react-router-dom";
+import Loading from "../../Loading";
 // import WriteAnArticle from "./WriteAnArticle";
 
 const MainContent = () => {
@@ -40,13 +41,13 @@ const MainContent = () => {
         setIsLoading(false);
         setTopicNotFound(false);
       } else {
-        setIsLoading(false);
+        setIsLoading(true);
         setTopicNotFound(true);
       }
     });
   }, [topic, order, sortBy]);
 
-  if (isLoading) return <p>....Loading</p>;
+  if (isLoading) return <Loading />;
 
   return (
     <div className="main-container">

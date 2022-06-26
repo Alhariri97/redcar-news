@@ -1,32 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import homePage from "../images/Sign up-bro.png";
 const Home = () => {
   const arrayOfPhotos = [
     {
       header: "Redcar Blog",
-      body: "you want know how cool it is till you try it",
-      src: "https://upload.wikimedia.org/wikipedia/commons/4/43/Redcar_%2833306974732%29.jpg",
+      body: "you won't know how cool it is till you try it",
     },
     {
       header: "Redcar News",
       body: "Holly Yesss",
-      src: "https://cloudinary.parallax.dev/yorkshire/image/upload/f_auto,c_scale,dpr_2,q_100,w_500/media/media/10901/redcar-beacon-2.jpg",
     },
     {
       header: "But How !",
       body: "You will never Know",
-      src: "https://media.thelogcompany.com/20200825213315/Redcar.jpg",
     },
     {
       header: "Is not that cool? ",
-      body: "defenatley it's is!",
-      src: "https://www.picturesofengland.com/img/X/1192208.jpg",
+      body: "Defenatley it is!",
     },
     {
-      header: "Opps , Alls Work well,",
-      body: "It's not nesscery to always be somthing went Wrong",
-      src: "https://upload.wikimedia.org/wikipedia/commons/7/75/High_Street_from_the_west_-_geograph.org.uk_-_797956.jpg",
+      header: "Opps , Alls Work well",
+      body: "It's not necessary be something went Wrong!",
     },
   ];
   const [indexofphot, setIndex] = useState(0);
@@ -43,23 +38,17 @@ const Home = () => {
   }, [arrayOfPhotos.length, indexofphot]);
 
   return (
-    <div style={{ width: "100%", height: "92vh" }}>
-      <div id="landing-container" style={{}}>
-        <img
-          id="photo-landing"
-          alt={chosen.name}
-          src={chosen.src}
-          style={{}}
-        ></img>
+    <div id="landing-container" style={{ width: "100%", height: "92vh" }}>
+      <img className="img-home" src={homePage} alt="home page"></img>
+      <div className="div-home" style={{ width: "" }}>
         <div className="center-photo-text">
-          <h3>{chosen.header}</h3>
-          <p>{chosen.body}</p>
           <button onClick={() => navigate("/topic")} className="explor-btn">
             Explor the Blog
           </button>
+          <h3>{chosen.header}</h3>
+          <p>{chosen.body}</p>
         </div>
       </div>
-      <div className="only-phone"></div>
     </div>
   );
 };

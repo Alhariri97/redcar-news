@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { UserContext } from "./context/UserContext"; //<----and this
 import { useContext } from "react"; //<------------------- this
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { registerUser } from "../api";
 
 const SignUp = () => {
@@ -29,10 +29,12 @@ const SignUp = () => {
       setErrorMsg("Fill All inputs");
     } else {
       registerUser(username, name, yourImage, email, password).then((e) => {
+        console.log(e);
         if (e.status === 201) {
+          console.log(e.data.name);
           navigate("/login", {
             state: {
-              name: e.data.newCreatedUser.name,
+              name: e.data.name,
             },
           });
         } else {
@@ -105,7 +107,14 @@ const SignUp = () => {
               setEmail(e.target.value);
             }}
           ></input>
-          <button>Submit</button>
+          <button>Submit</button>{" "}
+          <p>
+            Have an account!{" "}
+            <Link style={{ color: "green" }} to="/login">
+              {" "}
+              Log in
+            </Link>
+          </p>
           {errorMsg ? <p style={{ color: "red" }}>{errorMsg}</p> : null}
         </label>
       </form>

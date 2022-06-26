@@ -11,7 +11,7 @@ const AllLinks = ({ setShowMpileBar }) => {
       {user ? (
         <div
           className="profile"
-          style={{ cursor: "pointer", width: "20%" }}
+          style={{ cursor: "pointer" }}
           onClick={() => {
             if (setShowMpileBar) {
               setShowMpileBar(false);
