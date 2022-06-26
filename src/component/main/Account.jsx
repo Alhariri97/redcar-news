@@ -12,7 +12,7 @@ const Account = () => {
     }
   });
   return (
-    <div>
+    <div className="account-page">
       <h3>Wellcom {user.name}, in your account</h3>
       <img alt="user protofile " src={user.avatar_url}></img>
       <p>your username for loging in is : {user.username}</p>

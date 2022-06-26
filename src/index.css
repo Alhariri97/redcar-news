@@ -37,12 +37,27 @@ html,*{
   margin: auto;
 }
 .profile{
-  background-color: #00a52c;
   display: flex;
+  width: 30%;
   align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-between;
+  color: white;
 }
+
 .profile img{
-  width: 30px;
+  border-radius: 10px;
+  display: block;
+  width: 55px;
+  padding-left: 6px;
+  padding-top: 9px;
+}
+.profile p{
+  font-size: 1.5em;
+
+
 }
 .nav-bar{
   display: flex;
@@ -109,9 +124,6 @@ margin-top: 3vh;
 }
 @media (max-width:1540px) {
 
-  .main-contant .article{
-    /* height: 42vh; */
-  }
 }
 @media (max-width:1400px) and (min-width:1000px) {
   .main-contant .article{
@@ -344,23 +356,78 @@ max-width: 100%;
 }
 
 #write-article{
-  background-color: #00a52c;
   height: 100vh;
   width: 100vw;
   position: fixed;
-  top: 0;
+  top: 8vh;
   left: 0;
-  z-index: 3;
+}
+#write-article form{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  margin: auto;
+  padding-top: 5vh;
+}
+.cont-create{
+  width: 90%;
+  margin: auto;
+  padding: 84px;
+}
+.btn-create{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  align-content: center;
+  height: 5vh;
+}
+.btn-create select , .btn-create button{
+  height: 3vh;
+  width: 5vw;
+  cursor: pointer;
+}
+#write-article form label{
+  margin: 1vh;
+  width: 100%;
+}
+#write-article form textarea, #write-article form input{
+  height: 5vh;
+  width: 100%;
+  padding: 5px;
+  font-size: 16px;
 
 }
+#write-article form textarea{
+min-height: 30vh;
+resize: none;
+}
+
+@media (max-width:1000px) {
+
+    .cont-create{
+      padding: 0;
+      padding-top: 5vh;
+    }
+    .btn-create select, .btn-create button {
+      width: 80px;
+      height: 3.5vh;
+    }
+}
+
+/* 
+ */
+
 #login{
   height: 92vh;
   background-image: url("./../public/img/login.avif");
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
-
-  
 }
 #login form{
   margin: 17vh 10vw;
@@ -464,7 +531,7 @@ align-items: center;
 }
 }
 .contact-cont img{
-  height: 75vh;
+  height: 60vh;
 }
 /* Home page  */
 #landing-container{
@@ -506,7 +573,7 @@ align-items: center;
   }
   #landing-container .img-home{
     margin: auto;
-    width: 92vw;
+    width: 56vh;
     display: block;
   }
   #landing-container .center-photo-text{
@@ -615,4 +682,37 @@ align-items: center;
 }
 /* 
  */
+ .article-options{
+  height: 3vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 1vh;
+ }
+ .article-options select{
+  cursor: pointer;
+ }
+ .article-options a{
+  color: #00a52c;
+  font-size: large;
+ }
+ .article-options a:hover{
+  color: #372476;
+ }
  
+ .account-page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center
+ }
+ .account-page img{
+  display: block;
+  width: 70vh;
+  margin: 20px 0;
+ }
+ .account-page button{
+  margin: 20px;
+  height: 30px;
+  width: 100px;
+ }

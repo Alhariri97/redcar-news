@@ -56,18 +56,25 @@ const Create = () => {
   return (
     <div id="write-article">
       <span
-        style={{ float: "right", margin: "10px 30px" }}
+        style={{
+          cursor: "pointer",
+          float: "right",
+          margin: "10px 30px",
+          backgroundColor: "red",
+          padding: "4px",
+          borderRadius: "5px",
+        }}
         onClick={() => navigate("/topic")}
       >
-        {" "}
-        close
+        cancle
       </span>
-      <div>
-        <h4>Write an article</h4>
+      <div className="cont-create">
+        <h4>Write your article:</h4>
         <form className="titel" onSubmit={(e) => handelSubmit(e)}>
           <label htmlFor="title">
             Article Title:
             <input
+              placeholder="Write title here"
               id="title"
               type="text"
               name="title"
@@ -82,27 +89,30 @@ const Create = () => {
               type="text"
               name="title"
               value={articleBody}
+              placeholder="Your article body here...."
               onChange={(e) => setArticleBody(e.target.value)}
             ></textarea>
           </label>
-          <select
-            onChange={(e) => setTopicChosen(e.target.value)}
-            value={topicChosen}
-          >
-            {allTopics.map((t) => {
-              return (
-                <option key={t.slug} value={t.slug}>
-                  {t.slug}
-                </option>
-              );
-            })}
-          </select>
+          <div className="btn-create">
+            <select
+              onChange={(e) => setTopicChosen(e.target.value)}
+              value={topicChosen}
+            >
+              {allTopics.map((t) => {
+                return (
+                  <option key={t.slug} value={t.slug}>
+                    {t.slug}
+                  </option>
+                );
+              })}
+            </select>
 
-          {location.state ? (
-            <button type="submit">Update</button>
-          ) : (
-            <button type="submit">Pulblish</button>
-          )}
+            {location.state ? (
+              <button type="submit">Update</button>
+            ) : (
+              <button type="submit">Pulblish</button>
+            )}
+          </div>
         </form>
       </div>
     </div>

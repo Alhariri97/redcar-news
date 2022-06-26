@@ -28,7 +28,7 @@ const Login = () => {
       login(userNameInput, password).then((res) => {
         if (res.status === 200) {
           setUser(res.data);
-          navigate("/account");
+          navigate("/");
         }
         if (res.response.status !== 200) {
           if (res.response.data.msg) {
@@ -95,7 +95,9 @@ const Login = () => {
             }}
           ></input>
         </label>
-        <button type="submit">Login</button>
+        <button style={{ cursor: "pointer" }} type="submit">
+          Login
+        </button>
         {error.length ? <p style={{ color: "red" }}>{error}</p> : null}
         <p style={{}}>
           Don't have an Acount!

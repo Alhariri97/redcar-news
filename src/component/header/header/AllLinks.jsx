@@ -19,17 +19,7 @@ const AllLinks = ({ setShowMpileBar }) => {
             navigate("/account");
           }}
         >
-          <img
-            style={{
-              width: "20px",
-              borderRadius: "100%",
-              cursor: "pointer",
-              display: "block",
-              margin: "auto",
-            }}
-            src={user.avatar_url}
-            alt="profil page"
-          ></img>
+          <img src={user.avatar_url} alt="profil page"></img>
           <p>{user.name}</p>
         </div>
       ) : null}

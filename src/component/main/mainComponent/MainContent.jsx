@@ -25,7 +25,7 @@ const MainContent = () => {
       setHepupleshed(true);
       setTimeout(() => {
         setHepupleshed(false);
-      }, 1500);
+      }, 6000);
     }
   }, [chosenOrder, chosenSortBy, setOrder, setSortBy, location.state]);
 
@@ -82,7 +82,7 @@ const MainContent = () => {
         </div>
       ) : null}
       <div className="main-contant">
-        <div>
+        <div className="article-options">
           <select onChange={(e) => setChosenOrder(e.target.value)}>
             <option value={"asc"}>Ascend</option>
             <option value={"desc"}>Descen</option>
@@ -95,7 +95,7 @@ const MainContent = () => {
           <Link
             to="/create"
             onClick={() => setWriteAritcle(true)}
-            style={{ backgroundColor: "blue", color: "gray" }}
+            // style={{ backgroundColor: "blue", color: "gray" }}
           >
             Write an artilce
           </Link>
