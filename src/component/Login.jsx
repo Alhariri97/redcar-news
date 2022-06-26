@@ -28,6 +28,7 @@ const Login = () => {
       login(userNameInput, password).then((res) => {
         if (res.status === 200) {
           setUser(res.data);
+          window.sessionStorage.setItem("user", JSON.stringify(res.data));
           navigate("/");
         }
         if (res.response.status !== 200) {

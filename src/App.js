@@ -7,7 +7,7 @@ import Sidebar from "./component/main/mainComponent/Sidebar";
 import ArticlePage from "./component/main/One/ArticlePage";
 import Login from "./component/Login";
 import { UserContext } from "./component/context/UserContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NotFound from "./component/NotFound";
 import Account from "./component/main/Account";
 import Create from "./component/Create";
@@ -16,6 +16,12 @@ import Home from "./component/Home";
 
 function App() {
   const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("user")) {
+      setUser(JSON.parse(sessionStorage.getItem("user")));
+    }
+  }, []);
   return (
     <BrowserRouter>
       <div className="App">

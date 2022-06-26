@@ -20,6 +20,7 @@ const Account = () => {
         style={{ cursor: "pointer" }}
         onClick={() => {
           setUser(null);
+          sessionStorage.clear();
           navigate("/");
         }}
       >
