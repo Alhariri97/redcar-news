@@ -701,6 +701,7 @@ align-items: center;
  }
  
  .account-page{
+  padding-top: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -715,4 +716,11 @@ align-items: center;
   margin: 20px;
   height: 30px;
   width: 100px;
+ }
+ @media (max-width:1000px) {
+  .account-page img{
+    display: block;
+    width: 44vh;
+    margin: 20px 0;
+   }
  }
